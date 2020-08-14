@@ -1,0 +1,83 @@
+#:kivy 1.4
+
+FloatLayout:
+
+	canvas.before:
+		Color:
+			rgba : .5, .5, .5, 1
+		Rectangle:
+            pos: self.pos
+            size: self.size
+
+	Label:
+		text: "Trader Bot"
+		pos_hint: {"center_x" : .5, "top":1}
+		size_hint : .5, .2
+		font_size: 36
+
+
+	FloatLayout:
+		Label:
+			text: "Symbol"
+			pos_hint: {"x": .15, "center_y":.75}
+			size_hint : None, None
+		TextInput:
+			pos_hint:{"x" : .3, "center_y":.75}
+			size_hint : .2, .05
+			hint_text : "AMZN"
+
+
+	FloatLayout:
+		Spinner:
+			text: "Strategy"
+			pos_hint: {"x": .15, "center_y":.65}
+			size_hint : .35, .1
+			values: app.strategies
+
+
+    FloatLayout:
+        ToggleButton:
+            text : "Backtest"
+            state: "down"
+            group : "mode"
+            background_color: (.8,.8,.8,1) if self.state == 'normal' else (0,255,0,1)
+            size_hint : .1, .25
+            pos_hint: {"right" : .7, "center_y": .7}
+
+        ToggleButton:
+            text : "Live"
+            group : "mode"
+            background_color: (.8,.8,.8,1) if self.state == 'normal' else (255,0,0,1)
+            size_hint : .1, .25
+            pos_hint: {"right" : .85, "center_y": .7}
+
+    FloatLayout:
+        Label:
+            text : "Start Date (null for oldest)"
+            size_hint : None, None
+            pos_hint : {"x" : .2, "center_y" : .48}
+
+        TextInput:
+            pos_hint : {"x" : .4, "center_y" : .48}
+            size_hint : .25, .05
+            hint_text : "yyyy-mm-dd"
+
+
+
+        Label:
+            text : "End Date (null for newest)"
+            size_hint : None, None
+            pos_hint : {"x" : .2, "center_y" : .42}
+
+        TextInput:
+            pos_hint : {"x" : .4, "center_y" : .42}
+            size_hint : .25, .05
+            hint_text : "yyyy-mm-dd"
+
+
+    FloatLayout:
+        Label:
+            text: "GRAPH"
+            size_hint: 1, .4
+            pos_hint: {"center_x" : .5, "top" : .4}
+            font_size : 72
